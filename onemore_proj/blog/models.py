@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from taggit.managers import TaggableManager
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -26,6 +28,7 @@ class Post(models.Model):
                               default=Status.Draft)
     objects = models.Manager() # main manager
     published = PublishedManager() # custom manager queryset
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-publish']
@@ -53,6 +56,8 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+
+
 
     class Meta:
         ordering = ['created']
