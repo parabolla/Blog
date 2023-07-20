@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import ListView
 from taggit.models import Tag
 
-from .forms import CommentForm
+from .forms import CommentForm, SearchForm
 from .models import Post
 
 
@@ -69,3 +69,4 @@ def post_comment(request, post_id):
                   {'post': post,
                    'form': form,
                    'comment': comment})
+
